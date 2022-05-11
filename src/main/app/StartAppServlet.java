@@ -60,14 +60,6 @@ public class StartAppServlet extends HttpServlet {
 	    			break;
 	    		}
 	    		result = app.start(name);
-	    		//if ("cards".equals(selectApp)) {
-	    			//app = new CardGameApp("トランプ");
-	    		//} else if ("darts".equals(selectApp)) {
-	    			//app = new DartsGameApp("ダーツ");
-	    		//} else {
-	    		//	app = new ClockApp();
-	    		//}
-	    		//result = app.start(name);
 	    	}
 	    }
 	    
