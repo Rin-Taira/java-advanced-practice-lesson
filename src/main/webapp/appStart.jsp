@@ -1,4 +1,4 @@
-<%@ page import="jp.co.axiz.app.GameApp"%>
+<%@ page import="java.jp.co.axiz.app.GameApp"%>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
   pageEncoding="UTF-8"%>
