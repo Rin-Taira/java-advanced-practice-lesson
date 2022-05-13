@@ -93,11 +93,12 @@ body {
 
       -->
 
-
-      <tr>
-        <td>車体の色を表示</td>
-        <td>現在速度を表示</td>
-      </tr>
+	  <c:forEach var="car" items="${historyList}">
+        <tr>
+          <td>${car.getBodyColor()}</td>
+          <td>${car.getSpeed()}</td>
+        </tr>
+      </c:forEach>
 
   </table>
   </div>

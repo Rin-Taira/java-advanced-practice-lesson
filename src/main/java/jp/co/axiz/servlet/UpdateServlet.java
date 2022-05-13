@@ -1,12 +1,16 @@
-package app;
+package jp.co.axiz.servlet;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import jp.co.axiz.entity.Car;
 
 /**
  * Servlet implementation class StartAppServlet
@@ -41,7 +45,30 @@ public class UpdateServlet extends HttpServlet {
             throws ServletException, IOException {
 
     	// ここに必要な処理を記述してください。
-
+    	HttpSession session = request.getSession();
+    	
+    	String btn = (String) request.getParameter("btn");
+    	
+    	if (btn.equals("back")) {
+    		session.invalidate();
+    		request.getRequestDispatcher("input.jsp").forward(request, response);
+    	}
+    	
+    	ArrayList<Car> historyList = (ArrayList) session.getAttribute("historyList");
+    	String color = (String) request.getParameter("bodyColor");
+    	String speed = (String) request.getParameter("speed");
+    	
+    	Car previousCar = (Car) session.getAttribute("latestCar");
+    	Car latestCar = new Car(previousCar.getCarName(), previousCar.getBodyColor(), previousCar.getMaxSpeed(), previousCar.getSpeed());
+    	latestCar.setBodyColor(color);
+    	latestCar.setSpeed(Integer.parseInt(speed));
+    	
+    	historyList.add(latestCar);
+    	
+    	session.setAttribute("historyList", historyList);
+    	session.setAttribute("latestCar", latestCar);
+    	request.setAttribute("result", "車体の色と現在速度を変更しました");
+    	
         // 結果画面へ遷移
         request.getRequestDispatcher("update.jsp").forward(request, response);
 

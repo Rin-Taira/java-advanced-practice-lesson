@@ -1,4 +1,4 @@
-package app;
+package jp.co.axiz.util;
 
 /**
  * Utilityメソッドをまとめたクラス
